@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unduh Audio dari YouTube</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+    input[type="url"] {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #ff0000;
+      color: white;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #cc0000;
+    }
+    .note {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Unduh Audio dari YouTube</h1>
+    <form id="downloadForm" target="_blank" method="GET" action="">
+      <input type="url" id="youtubeUrl" name="url" placeholder="Masukkan link YouTube di sini" required />
+      <button type="submit">Konversi & Unduh</button>
+    </form>
+    <p class="note">* Anda akan diarahkan ke layanan pihak ketiga untuk mengunduh audio.</p>
+  </div>
+
+  <script>
+    const form = document.getElementById('downloadForm');
+    const input = document.getElementById('youtubeUrl');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const url = input.value.trim();
+
+      // Validasi sederhana link YouTube
+      if (!url.match(/^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+$/)) {
+        alert('Masukkan URL YouTube yang valid!');
+        return;
+      }
+
+      // Contoh redirect ke ytmp3.cc dengan parameter URL
+      // NOTE: Layanan ini bisa berubah atau diblokir, gunakan sesuai kebijakan
+      const convertUrl = 'https://ytmp3.cc/en13/';
+
+      // Karena ytmp3.cc tidak menerima parameter URL langsung,
+      // kita hanya arahkan ke situsnya dan user harus paste link manual.
+      // Jika Anda punya layanan backend, bisa buat API sendiri.
+
+      window.open(convertUrl, '_blank');
+    });
+  </script>
+
+</body>
+</html>
